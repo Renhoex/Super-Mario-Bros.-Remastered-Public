@@ -91,7 +91,7 @@ func handle_ground_movement(delta: float) -> void:
 func ground_acceleration(delta: float) -> void:
 	var target_move_speed := player.WALK_SPEED
 	if player.in_water or player.flight_meter > 0:
-		target_move_speed = 45
+		target_move_speed = 1.0625 * 60.0 # original 45
 	var target_accel := player.GROUND_WALK_ACCEL
 	if (Global.player_action_pressed("run", player.player_id) and abs(player.velocity.x) >= player.WALK_SPEED) and (not player.in_water and player.flight_meter <= 0) and player.can_run:
 		target_move_speed = player.RUN_SPEED
@@ -101,7 +101,6 @@ func ground_acceleration(delta: float) -> void:
 			target_accel = player.RUN_SKID
 		else:
 			target_accel = player.WALK_SKID
-	
 	player.velocity.x = move_toward(player.velocity.x, target_move_speed * player.input_direction, (target_accel / delta) * delta)
 
 func deceleration(delta: float) -> void:
