@@ -1,24 +1,30 @@
 class_name Player
 extends CharacterBody2D
 
-var AIR_ACCEL := 3.0
-var AIR_SKID := 1.5
-var DECEL := 3.0
-var FALL_GRAVITY := 25.0
-var GROUND_RUN_ACCEL := 1.25
-var GROUND_WALK_ACCEL := 4.0
-var JUMP_GRAVITY := 11.0
+# Accurate physics numbers are taken from
+# you can convert using this formula below, right clicking and selecting "evaluate selection" or CTRL+SHIFT+E
+# float(0xyourhexnum) / 4096
+# then multiply by 60
+# Physics values taken from https://web.archive.org/web/20130807122227/http://i276.photobucket.com/albums/kk21/jdaster64/smb_playerphysics.png
+
+var AIR_ACCEL := 3.33984378 # Original 3.0
+var AIR_SKID := 2.2265625 # Original 1.5
+var DECEL := 3.046875 # Original 3.0
+var FALL_GRAVITY := 22.5 # Original 25.0
+var GROUND_RUN_ACCEL := 3.33984378 # original 1.25
+var GROUND_WALK_ACCEL := 2.2265625 # original 4.0
+var JUMP_GRAVITY := 9.375 # original 11.0
 var JUMP_HEIGHT := 300.0
 var JUMP_INCR := 8.0
-var SWIM_GRAVITY := 2.5
+var SWIM_GRAVITY := 2.34375 # Original 2.5
 var SWIM_SPEED := 95.0
-var MAX_FALL_SPEED := 280
+var MAX_FALL_SPEED := 270.0 # original 280
 var MAX_SWIM_FALL_SPEED := 200
-var RUN_SKID := 8.0
-var RUN_SPEED := 160
-var WALK_SKID := 8.0
-var WALK_SPEED := 96.0
-var CEILING_BUMP_SPEED := 45.0
+var RUN_SKID := 6.09375 # Original 8.0
+var RUN_SPEED := 153.75 # Original 160
+var WALK_SKID := 6.09375 # Original 8.0
+var WALK_SPEED := 93.75 # Original 96.0
+var CEILING_BUMP_SPEED := 60.0 # Original 45.0
 @onready var camera_center_joint: Node2D = $CameraCenterJoint
 
 @onready var sprite: AnimatedSprite2D = $Sprite
