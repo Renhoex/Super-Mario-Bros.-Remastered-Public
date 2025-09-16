@@ -56,9 +56,11 @@ func grounded(delta: float) -> void:
 			return
 		else:
 			player.jump()
+			player.apply_gravity(delta)
 	if jump_queued and not (player.in_water or player.flight_meter > 0):
 		if player.spring_bouncing == false:
 			player.jump()
+			player.apply_gravity(delta)
 		jump_queued = false
 	if not player.crouching:
 		if Global.player_action_pressed("move_down", player.player_id):
