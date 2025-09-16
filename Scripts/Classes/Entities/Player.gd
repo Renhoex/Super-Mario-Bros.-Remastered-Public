@@ -563,6 +563,7 @@ func death_load() -> void:
 	else:
 		LevelPersistance.reset_states()
 		if Global.current_game_mode == Global.GameMode.BOO_RACE:
+			Global.death_load = false
 			Global.reset_values()
 			Global.clear_saved_values()
 			Level.start_level_path = Global.current_level.scene_file_path
