@@ -513,7 +513,7 @@ func do_i_frames() -> void:
 	refresh_hitbox()
 
 func die(pit := false) -> void:
-	if state_machine.state.name == "Dead" or state_machine.state.name == "Pipe":
+	if ["Dead", "Pipe", "LevelExit"].has(state_machine.state.name):
 		return
 	is_dead = true
 	visible = not pit
@@ -563,6 +563,7 @@ func death_load() -> void:
 	else:
 		LevelPersistance.reset_states()
 		if Global.current_game_mode == Global.GameMode.BOO_RACE:
+			Global.death_load = false
 			Global.reset_values()
 			Global.clear_saved_values()
 			Level.start_level_path = Global.current_level.scene_file_path
