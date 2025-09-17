@@ -187,6 +187,13 @@ func apply_character_physics() -> void:
 	for i in json.physics:
 		set(i, json.physics[i])
 	
+	# check for classic physics if classic mode is enabled
+	if Settings.file.difficulty.physics == 1:
+		# if classic physics are found overwrite
+		if json.has("classic_physics"):
+			for i in json.classic_physics:
+				set(i, json.classic_physics[i])
+	
 	for i in get_tree().get_nodes_in_group("SmallCollisions"):
 		var hitbox_scale = json.get("small_hitbox_scale", [1, 1])
 		i.scale = Vector2(hitbox_scale[0], hitbox_scale[1])
@@ -714,7 +721,13 @@ func jump() -> void:
 	has_jumped = true
 
 func calculate_jump_height() -> float: # Thanks wye love you xxx
-	return -(JUMP_HEIGHT + JUMP_INCR * float(abs(velocity.x) / 36))
+	# check if we're in classic mode
+	if Settings.file.difficulty.physics == 1:
+		# classic jump boost
+		return -(JUMP_HEIGHT + JUMP_INCR * float(abs(velocity.x) / 36.0))
+	else:
+		# remastered jump boost
+		return -(JUMP_HEIGHT + JUMP_INCR * int(abs(velocity.x) / 25))
 
 const SMOKE_PARTICLE = preload("res://Scenes/Prefabs/Particles/SmokeParticle.tscn")
 
