@@ -257,7 +257,7 @@ size_flags_vertical = 3
 theme_override_constants/separation = -4
 script = ExtResource("4_avtty")
 category_name = "SETTINGS_VIDEO"
-options = [NodePath("Language"), NodePath("WindowMode"), NodePath("Size"), NodePath("Visuals"), NodePath("Scaling"), NodePath("VSync"), NodePath("DropShadows"), NodePath("HudStyle"), NodePath("FrameLimit")]
+options = [NodePath("Language"), NodePath("WindowMode"), NodePath("Size"), NodePath("Scale"), NodePath("Visuals"), NodePath("Scaling"), NodePath("VSync"), NodePath("DropShadows"), NodePath("HudStyle"), NodePath("FrameLimit")]
 
 [node name="Control" type="Control" parent="PanelContainer/MarginContainer/VBoxContainer/Video"]
 custom_minimum_size = Vector2(0, 4)
@@ -290,6 +290,12 @@ option_key = "size"
 title = "VIDEO_SIZE"
 values = ["VIDEO_ASPECT_OG", "VIDEO_ASPECT_WIDE"]
 selected = true
+
+[node name="Scale" parent="PanelContainer/MarginContainer/VBoxContainer/Video" groups=["Options"] instance=ExtResource("3_dl6kk")]
+layout_mode = 2
+option_key = "scale"
+title = "VIDEO_SCALE"
+values = [1, 2, 3, 4, 5]
 
 [node name="Visuals" parent="PanelContainer/MarginContainer/VBoxContainer/Video" groups=["Options"] instance=ExtResource("3_dl6kk")]
 layout_mode = 2
@@ -893,6 +899,7 @@ script = ExtResource("19_k6yev")
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Video/Language" to="PanelContainer/MarginContainer/VBoxContainer/Video/WindowChanger" method="language_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Video/WindowMode" to="PanelContainer/MarginContainer/VBoxContainer/Video/WindowChanger" method="window_mode_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Video/Size" to="PanelContainer/MarginContainer/VBoxContainer/Video/WindowChanger" method="window_size_changed"]
+[connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Video/Scale" to="PanelContainer/MarginContainer/VBoxContainer/Video/WindowChanger" method="window_scale_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Video/Visuals" to="PanelContainer/MarginContainer/VBoxContainer/Video/WindowChanger" method="visuals_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Video/Scaling" to="PanelContainer/MarginContainer/VBoxContainer/Video/WindowChanger" method="scaling_changed"]
 [connection signal="value_changed" from="PanelContainer/MarginContainer/VBoxContainer/Video/VSync" to="PanelContainer/MarginContainer/VBoxContainer/Video/WindowChanger" method="vsync_changed"]

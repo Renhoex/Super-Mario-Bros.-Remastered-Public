@@ -4,6 +4,7 @@ var file := {
 	"video": {
 		"mode": 0,
 		"size": 0,
+		"scale": 0,
 		"vsync": 1,
 		"drop_shadows": 1,
 		"scaling": 0,
