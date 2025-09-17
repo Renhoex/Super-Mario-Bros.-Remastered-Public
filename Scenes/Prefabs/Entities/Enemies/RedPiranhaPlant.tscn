@@ -41,7 +41,7 @@ position = Vector2(0, -9.75)
 resource_json = ExtResource("3_jkccd")
 
 [node name="Animation" parent="." index="1"]
-speed_scale = 2.0
+speed_scale = 1.5
 
 [node name="ResourceSetterNew" parent="LevelEditorVisibleNode/Sprite" index="0"]
 resource_json = ExtResource("3_jkccd")
