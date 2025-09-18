@@ -15,7 +15,7 @@ script/source = "extends Node2D
 
 @export_range(4, 16) var length := 6
 
-@export_range(0, 360, 45) var starting_angle := 0
+@export_range(0, 360, 5) var starting_angle := 0
 
 @export_enum(\"C-Clockwise\", \"Clockwise\") var direction := 0
 
