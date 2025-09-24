@@ -24,8 +24,11 @@ var smooth_rotation := false
 
 var bar_rotation := 0.0
 
+var activated := false # only activate once on screen, performs similarly to the original
+
 func _physics_process(delta: float) -> void:
-	bar_rotation += 108 * delta * [-1, 1][direction]
+	if activated:
+		bar_rotation += 108 * delta * [-1, 1][direction]
 	if Settings.file.visuals.firebar_style == 1:
 		$RotationJoint.global_rotation_degrees = bar_rotation
 	else:
@@ -34,6 +37,10 @@ func _physics_process(delta: float) -> void:
 func on_area_entered(area: Area2D) -> void:
 	if area.owner is Player:
 		area.owner.damage()
+
+
+func on_screen_entered():
+	activated = true
 "
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_p4n6u"]
@@ -85,7 +92,9 @@ extends Node
 
 func _ready() -> void:
 	await get_tree().physics_frame
-	%RotationJoint.global_rotation_degrees = owner.starting_angle
+	owner.bar_rotation = float(owner.starting_angle)
+	# move on screen point to be farthest on the left
+	%onscreen.position.x = min((Vector2.UP.rotated(deg_to_rad(owner.starting_angle))*owner.length*8.0).x,0.0)
 
 func _process(_delta: float) -> void:
 	var idx := 0
@@ -94,9 +103,11 @@ func _process(_delta: float) -> void:
 		idx += 1
 	if Engine.is_editor_hint() == false:
 		if Global.current_game_mode == Global.GameMode.LEVEL_EDITOR and LevelEditor.playing_level == false:
-			%RotationJoint.global_rotation_degrees = owner.starting_angle
+			owner.bar_rotation = float(owner.starting_angle)
 	else:
-		%RotationJoint.global_rotation_degrees = owner.starting_angle
+		%RotationJoint.global_rotation_degrees = float(owner.starting_angle)
+		# move on screen point to be farthest on the left
+		%onscreen.position.x = min((Vector2.UP.rotated(deg_to_rad(owner.starting_angle))*owner.length*8.0).x,0.0)
 	$\"../RotationJoint/Hitbox/Shape\".shape.b = Vector2(0, -(owner.length - 1) * 8)
 	$\"../Node2D/Sprite2D\".scale.x = [-1, 1][owner.direction]
 "
@@ -616,4 +627,9 @@ property_name = "texture"
 themed_resource = ExtResource("7_3irkc")
 metadata/_custom_type_script = "uid://cq6f682453q6o"
 
+[node name="onscreen" type="VisibleOnScreenNotifier2D" parent="."]
+unique_name_in_owner = true
+rect = Rect2(-10, -40, 74, 80)
+
 [connection signal="area_entered" from="RotationJoint/Hitbox" to="." method="on_area_entered"]
+[connection signal="screen_entered" from="onscreen" to="." method="on_screen_entered"]
