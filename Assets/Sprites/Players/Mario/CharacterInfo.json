@@ -32,7 +32,9 @@
 		"SWIM_GRAVITY": 2.5,
 		"MAX_SWIM_FALL_SPEED": 200.0,
 
-		"DEATH_JUMP_HEIGHT": 300.0
+		"DEATH_JUMP_HEIGHT": 300.0,
+		
+		"can_air_turn": false
 	},
 	"classic_physics": {
 		"AIR_ACCEL": 3.33984378,
@@ -59,7 +61,9 @@
 		"RUN_SPEED": 148,
 		"WALK_SKID": 6.09375,
 		"WALK_SPEED": 93.75,
-		"DEATH_JUMP_HEIGHT": 300.0
+		"DEATH_JUMP_HEIGHT": 300.0,
+
+		"can_air_turn": false
 	},
 	"small_hitbox_scale": [1.0, 1.0],
 	"big_hitbox_scale": [1.0, 1.0]
