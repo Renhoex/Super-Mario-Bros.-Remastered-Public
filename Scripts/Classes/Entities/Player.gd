@@ -156,15 +156,12 @@ var can_run := true
 
 var air_frames := 0
 
-static var classic_physics := false
 
 var swim_stroke := false
 
 var simulated_velocity := Vector2.ZERO
 
 func _ready() -> void:
-	if classic_physics:
-		apply_classic_physics()
 	get_viewport().size_changed.connect(recenter_camera)
 	show()
 	$Checkpoint/Label.text = str(player_id + 1)
@@ -204,6 +201,15 @@ func apply_character_physics() -> void:
 		if json.has("classic_physics"):
 			for i in json.classic_physics:
 				set(i, json.classic_physics[i])
+		else: # grab mario's instead
+			# repeat the pull but only for Mario
+			var classic_physics_path = "res://Assets/Sprites/Players/Mario/CharacterInfo.json"
+			classic_physics_path = ResourceSetter.get_pure_resource_path(classic_physics_path)
+			var classic_lookup_json = JSON.parse_string(FileAccess.open(classic_physics_path, FileAccess.READ).get_as_text())
+			for i in classic_lookup_json.classic_physics:
+				set(i, classic_lookup_json.classic_physics[i])
+			
+			
 	
 	for i in get_tree().get_nodes_in_group("SmallCollisions"):
 		var hitbox_scale = json.get("small_hitbox_scale", [1, 1])
@@ -214,10 +220,6 @@ func apply_character_physics() -> void:
 		i.scale = Vector2(hitbox_scale[0], hitbox_scale[1])
 		i.update()
 
-func apply_classic_physics() -> void:
-	var json = JSON.parse_string(FileAccess.open("res://Resources/ClassicPhysics.json", FileAccess.READ).get_as_text())
-	for i in json:
-		set(i, json[i])
 
 func recenter_camera() -> void:
 	%CameraHandler.recenter_camera()
