@@ -3,22 +3,5 @@
 /android/
 Exports/
 Assets/LevelGuides
-
-.nomedia
-
-# Godot-specific ignores
-.import/
-*.import
-**/*.import
-**/.*.import
-export.cfg
-export_credentials.cfg
-*.tmp
-
-# Imported translations (automatically generated from CSV files)
-*.translation
-
-# Mono-specific ignores
-.mono/
-data_*/
-mono_crash.*.json
+addons/discord-rpc-gd/bin/windows/~discord_game_sdk_binding_debug.dll
+godotgif/bin/~godotgif.windows.template_debug.x86_64.dll
