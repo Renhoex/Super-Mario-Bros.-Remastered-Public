@@ -173,7 +173,9 @@ func _ready() -> void:
 	character = CHARACTERS[int(Global.player_characters[player_id])]
 	Global.can_time_tick = true
 	if [Global.GameMode.BOO_RACE, Global.GameMode.MARATHON, Global.GameMode.MARATHON_PRACTICE].has(Global.current_game_mode) == false:
-		apply_character_physics()
+		apply_character_physics() # allow any physics from characters, modded or otherwise
+	else:
+		apply_base_physics() # force mario's physics to make it speedrun friendly. no cheating!
 	apply_character_sfx_map()
 	Global.level_theme_changed.connect(apply_character_sfx_map)
 	Global.level_theme_changed.connect(apply_character_physics)
@@ -222,7 +224,22 @@ func apply_character_physics() -> void:
 		i.scale = Vector2(hitbox_scale[0], hitbox_scale[1])
 		i.update()
 
-
+func apply_base_physics() -> void:
+	var path = "res://Assets/Sprites/Players/Mario/CharacterInfo.json"
+	path = ResourceSetter.get_pure_resource_path(path)
+	var json = JSON.parse_string(FileAccess.open(path, FileAccess.READ).get_as_text())
+	
+	# Set the Physics. Hitboxes are not set to ensure that the player doesnt cheat by using modded ones.
+	for i in json.physics:
+		set(i, json.physics[i])
+	
+	# check for classic physics if classic mode is enabled
+	if Settings.file.difficulty.physics == 1:
+		# if classic physics are found overwrite
+		if json.has("classic_physics"):
+			for i in json.classic_physics:
+				set(i, json.classic_physics[i])
+	
 func recenter_camera() -> void:
 	%CameraHandler.recenter_camera()
 	%CameraHandler.update_camera_barriers()
