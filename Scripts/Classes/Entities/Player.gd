@@ -23,6 +23,8 @@ var RUN_SPEED := 160.0                 # The player's speed while running, measu
 var GROUND_RUN_ACCEL := 1.25           # The player's acceleration while running, measured in px/frame
 var RUN_SKID := 8.0                    # The player's turning deceleration while running, measured in px/frame
 
+var SKID_THRESHOLD := 100.0            # The horizontal speed required, to be able to start skidding.
+
 var DECEL := 3.0                       # The player's deceleration while no buttons are pressed, measured in px/frame
 var AIR_ACCEL := 3.0                   # The player's acceleration while in midair, measured in px/frame
 var AIR_SKID := 1.5                    # The player's turning deceleration while in midair, measured in px/frame
@@ -181,6 +183,8 @@ var air_frames := 0
 
 var swim_stroke := false
 
+var skid_frames := 0
+
 var simulated_velocity := Vector2.ZERO
 
 func _ready() -> void:
@@ -207,6 +211,7 @@ func _ready() -> void:
 		camera.enabled = false
 	handle_power_up_states(0)
 	set_power_state_frame()
+	handle_invincible_palette()
 	if Global.level_editor == null:
 		recenter_camera()
 
@@ -306,6 +311,8 @@ func _physics_process(delta: float) -> void:
 	elif velocity.y > 15:
 		can_bump_sfx = true
 	handle_water_detection()
+	%SkidParticles.visible = Settings.file.visuals.extra_particles == 1
+	%SkidParticles.emitting = ((skidding and skid_frames > 2) or crouching) and is_on_floor() and abs(velocity.x) > 25 and Settings.file.visuals.extra_particles == 1
 	if $SkidSFX.playing:
 		if (is_actually_on_floor() and skidding) == false:
 			$SkidSFX.stop()
@@ -586,6 +593,7 @@ func die(pit := false) -> void:
 	Global.p_switch_active = false
 	Global.p_switch_timer = 0
 	stop_all_timers()
+	Global.total_deaths += 1
 	sprite.process_mode = Node.PROCESS_MODE_ALWAYS
 	state_machine.transition_to("Dead", {"Pit": pit})
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -610,7 +618,7 @@ func death_load() -> void:
 	Global.death_load = true
 
 	# Handle lives decrement for CAMPAIGN and MARATHON
-	if [Global.GameMode.CAMPAIGN, Global.GameMode.MARATHON].has(Global.current_game_mode):
+	if [Global.GameMode.CAMPAIGN, Global.GameMode.MARATHON, Global.GameMode.LEVEL_EDITOR, Global.GameMode.CUSTOM_LEVEL].has(Global.current_game_mode):
 		if Settings.file.difficulty.inf_lives == 0:
 			Global.lives -= 1
 
@@ -741,6 +749,7 @@ func power_up_animation(new_power_state := "") -> void:
 				sprite.sprite_frames = old_frames
 				await get_tree().create_timer(0.05).timeout
 		else:
+			handle_invincible_palette()
 			sprite.stop()
 			sprite.material.set_shader_parameter("enabled", true)
 			transforming = true

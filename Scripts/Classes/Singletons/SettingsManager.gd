@@ -69,7 +69,8 @@ var file := {
 		"visible_timers": 0,
 		"transition_animation": 0,
 		"colour_pipes": 1,
-		"firebar_style": 0
+		"firebar_style": 0,
+		"extra_particles": 0
 	},
 	"difficulty":
 	{

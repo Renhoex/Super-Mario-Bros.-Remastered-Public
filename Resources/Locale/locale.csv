@@ -433,6 +433,7 @@ ENEMY_MOLE,,Monty Mole,Taupi Taupe,Kret Monty,kpot mohtи,,,ＭＯＮＴＹ Ｍ�
 ENEMY_BOBOMB,,Bob-Omb,Bob-Omb,Bob-Omb,Бoб-omб,,,ＢＯＢ-ＯＭＢ,Bob-Omba,Bob-Omb,,Bob-Omb,Bob-Omba,ボブ
 ENEMY_SIDESTEPPER,,Sidestepper,Zarbipas,Pełzacz,Бokoxoд,,,ＳＩＤＥＳＴＥＰＰＥＲ,Pikonikrab,Krabbe,Yengeç,Sidestepper,Caranguejo-Lateral,カニキチ
 ENEMY_FIGHTERFLY,,Fighter Fly,Mouchak,Świetlik,Бoйцobaя mУxa,,,ＦＩＧＨＴＥＲ ＦＬＹ,Langao,Fliege,Savaşçı Sinek,Fighter Fly,Mosca-Lutadora,ハエまる
+ENEMY_SIGEBOU,,Sigebou,Boule de feu,Sigebou,,El brasas,Fiammella,ＳＩＧＥＢＯＵ,,Feuerball,,Sigebou,Bola de fogo,ドラムカンファイア
 ENEMY_LIT_BOBOMB,Bob ombs that are already LIT that can chase the player and will explode after a bit,Lit Bob-Omb,Bob-Omb allumé,Podpalony Bob-Omb,aktиbиpobahhый бoб-omб,,,ＬＩＴ ＢＯＢ-ＯＭＢ,Nakasinding Bob-Omba,Gezündeter Bob-Omb,Yanan Bob-Omb,Menyala Bob-Omb,Bob-Omba Acesa,ボブ（てんか）
 ENEMY_WRENCH,,Rocky Wrench,Torti-Taupe,Rocky Wrench,pokи-kлюч,,,ＲＯＣＫＹ ＷＲＥＮＣＨ,,Rocky Schraubschlüssel,,Rocky Wrench,Rochave-Inglesa,プー
 ENEMY_BARREL,,Barrel,Tonneau,Beczka,Бoчka,,,ＢＡＲＲＥＬ,Bariles,Fass,Varİl,Barel,Barril,タル
