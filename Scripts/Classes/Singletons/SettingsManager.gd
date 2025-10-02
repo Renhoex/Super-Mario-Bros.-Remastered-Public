@@ -20,6 +20,7 @@ var file := {
 		"extra_bgm": 1,
 		"skid_sfx": 1,
 		"extra_sfx": 0,
+		"pause_bgm": 1,
 		"menu_bgm": 0
 	},
 	"game": {
