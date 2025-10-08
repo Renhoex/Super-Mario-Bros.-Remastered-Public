@@ -97,6 +97,7 @@ region_rect = Rect2(16, 0, 16, 32)
 [node name="BowsersBro" parent="." instance=ExtResource("18_4i10n")]
 position = Vector2(584, 0)
 can_hammer = false
+can_fire = false
 
 [node name="GreenKoopaTroopa" parent="." instance=ExtResource("19_j3p10")]
 position = Vector2(760, 0)
