@@ -160,8 +160,7 @@ func transition_to_next_level() -> void:
 		Global.world_num = next_world
 		LevelTransition.level_to_transition_to = get_scene_string(next_world, next_level)
 	first_load = true
-	if Global.world_num > -1:
-		SaveManager.write_save()
+	SaveManager.write_save()
 	Global.transition_to_scene("res://Scenes/Levels/LevelTransition.tscn")
 	Checkpoint.passed_checkpoints.clear()
 
