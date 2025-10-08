@@ -62,6 +62,8 @@
 		"WALK_SKID": 6.09375,
 		"WALK_SPEED": 93.75,
 		"DEATH_JUMP_HEIGHT": 300.0,
+		
+		"SKID_THRESHOLD": 50.0,
 
 		"can_air_turn": false
 	},

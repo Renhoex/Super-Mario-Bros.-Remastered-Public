@@ -163,7 +163,7 @@ func handle_swimming(delta: float) -> void:
 		player.summon_bubble()
 		bubble_meter = 0
 	swim_up_meter -= delta
-	player.skidding = (player.input_direction != player.velocity_direction) and player.input_direction != 0 and abs(player.velocity.x) > 100 and not player.crouching
+	player.skidding = (player.input_direction != player.velocity_direction) and player.input_direction != 0 and abs(player.velocity.x) > player.SKID_THRESHOLD and not player.crouching
 	if player.skidding:
 		ground_skid(delta)
 	elif player.input_direction != 0 and not player.crouching:
