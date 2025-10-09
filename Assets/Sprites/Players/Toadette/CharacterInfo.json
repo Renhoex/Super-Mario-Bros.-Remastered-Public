@@ -1,5 +1,5 @@
 {
-	"name": "CHAR_TOADETTE",
+	"name": "CHAR_MARIO",
 	"physics": {
 		"JUMP_GRAVITY": 11.0,
 		"JUMP_HEIGHT": 300.0,
@@ -64,9 +64,11 @@
 		"DEATH_JUMP_HEIGHT": 300.0,
 		
 		"SKID_THRESHOLD": 50.0,
-		
+
 		"can_air_turn": false
 	},
 	"small_hitbox_scale": [1.0, 1.0],
-	"big_hitbox_scale": [1.0, 1.0]
+	"small_crouch_scale": 0.75,
+	"big_hitbox_scale": [1.0, 1.0],
+	"big_crouch_scale": 0.5
 }
