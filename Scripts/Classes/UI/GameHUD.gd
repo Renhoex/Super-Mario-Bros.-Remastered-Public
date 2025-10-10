@@ -135,7 +135,7 @@ func handle_yoshi_radar() -> void:
 				break
 	%Radar.frame = Global.level_num
 	%ModernRadar.frame = Global.level_num
-	if has_egg == false or ChallengeModeHandler.is_coin_collected(5): 
+	if has_egg == false or ChallengeModeHandler.is_coin_collected(ChallengeModeHandler.CoinValues.YOSHI_EGG): 
 		%Radar.get_node("AnimationPlayer").play("RESET")
 		%ModernRadar.get_node("AnimationPlayer").play("RESET")
 		return
