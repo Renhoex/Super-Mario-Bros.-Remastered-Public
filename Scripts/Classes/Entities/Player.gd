@@ -166,6 +166,7 @@ const ANIMATION_FALLBACKS := {
 	"FlyBump": "SwimBump",
 	"FlagSlide": "Climb",
 	"WaterMove": "Move",
+	"SwimMove" : "Move",
 	"WaterIdle": "Idle",
 	"SwimBump": "Bump",
 	"DieFreeze": "Die",
