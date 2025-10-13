@@ -29,7 +29,7 @@ func _ready() -> void:
 	$ThrowTimer.start()
 	lakitu_point = to_local(global_position)
 	fixed_throw = Settings.file.difficulty.lakitu_style == 1
-	get_parent().move_child(self, 0)
+	get_parent().move_child.call_deferred(self, 0)
 
 func _process(_delta: float) -> void:
 	screen_center = get_viewport().get_camera_2d().get_screen_center_position()
