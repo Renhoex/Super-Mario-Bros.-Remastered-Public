@@ -37,5 +37,7 @@ func summon_block_coin() -> void:
 
 func summon_particle() -> void:
 	var node = COIN_SPARKLE.instantiate()
+	node.global_position = global_position
+	node.process_mode = Node.PROCESS_MODE_ALWAYS
 	node.finished.connect(queue_free)
-	add_child(node)
+	add_sibling(node)
