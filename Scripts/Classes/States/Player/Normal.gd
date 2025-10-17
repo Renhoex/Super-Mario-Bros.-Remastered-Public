@@ -309,5 +309,5 @@ func get_animation_name() -> String:
 			return "Fall"
 
 func exit() -> void:
-	player.on_hammer_timeout()
-	player.skidding = false
+	owner.on_hammer_timeout()
+	owner.skidding = false
