@@ -215,7 +215,7 @@ func _ready() -> void:
 	if [Global.GameMode.BOO_RACE, Global.GameMode.MARATHON, Global.GameMode.MARATHON_PRACTICE].has(Global.current_game_mode) == false:
 		apply_character_physics() # allow any physics from characters, modded or otherwise
 	else:
-		apply_base_physics() # force mario's physics to make it speedrun friendly. no cheating!
+		apply_base_physics() # force mario's data to make it speedrun friendly. no cheating!
 	apply_character_sfx_map()
 	Global.level_theme_changed.connect(apply_character_sfx_map)
 	Global.level_theme_changed.connect(apply_character_physics)
@@ -270,7 +270,7 @@ func apply_base_physics() -> void:
 	path = ResourceSetter.get_pure_resource_path(path)
 	var json = JSON.parse_string(FileAccess.open(path, FileAccess.READ).get_as_text())
 	
-	# Set the Physics. Hitboxes are not set to ensure that the player doesnt cheat by using modded ones.
+	# Set the Physics. Also set hitboxes to be mario to ensure legitimacy.
 	for i in json.physics:
 		set(i, json.physics[i])
 	
@@ -280,6 +280,15 @@ func apply_base_physics() -> void:
 		if json.has("classic_physics"):
 			for i in json.classic_physics:
 				set(i, json.classic_physics[i])
+
+	for i in get_tree().get_nodes_in_group("SmallCollisions"):
+		var hitbox_scale = json.get("small_hitbox_scale", [1, 1])
+		i.hitbox = Vector3(hitbox_scale[0], hitbox_scale[1] if i.get_meta("scalable", true) else 1, json.get("small_crouch_scale", 0.75))
+		i._physics_process(0)
+	for i in get_tree().get_nodes_in_group("BigCollisions"):
+		var hitbox_scale = json.get("big_hitbox_scale", [1, 1])
+		i.hitbox = Vector3(hitbox_scale[0], hitbox_scale[1] if i.get_meta("scalable", true) else 1, json.get("big_crouch_scale", 0.5))
+		i._physics_process(0)
 	
 func recenter_camera() -> void:
 	%CameraHandler.recenter_camera()
