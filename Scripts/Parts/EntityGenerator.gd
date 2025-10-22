@@ -41,6 +41,8 @@ func spawn_entity() -> void:
 	else:
 		if y_pos == 0:
 			node.global_position.y = get_tree().get_first_node_in_group("Players").global_position.y + randi_range(-4, 4)
+		elif entity_scene.resource_path == "res://Scenes/Prefabs/Entities/Enemies/BowserFlame.tscn":
+			node.global_position.y = randf_range(-56, -120) ## corridor behavior ? this assumes it does not track the player (they dont in Bros based games)
 		else:
 			node.global_position.y = randf_range(0, -152)
 		node.global_position.x = get_viewport().get_camera_2d().get_screen_center_position().x + ((get_viewport().get_visible_rect().size.x / 2) + 8)
