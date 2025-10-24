@@ -12,8 +12,6 @@ var lakitu_point := Vector2.ZERO
 
 const BLOCK_DISTANCE := 64
 
-static var fixed_throw := true
-
 var player: Player = null
 
 var retreat := false
@@ -28,8 +26,7 @@ func _ready() -> void:
 	can_enter = false
 	$ThrowTimer.start()
 	lakitu_point = to_local(global_position)
-	fixed_throw = Settings.file.difficulty.lakitu_style == 1
-	get_parent().move_child.call_deferred(self, 0)
+	get_parent().move_child(self, 0)
 
 func _process(_delta: float) -> void:
 	screen_center = get_viewport().get_camera_2d().get_screen_center_position()
@@ -80,7 +77,7 @@ func throw_spiny() -> void:
 	node.set("in_egg", true)
 	node.global_position = $Cloud/Sprite.global_position
 	node.velocity = Vector2(0, -150)
-	if fixed_throw:
+	if Settings.file.difficulty.lakitu_style == 1:
 		node.velocity.x = 50 * (sign(player.global_position.x - global_position.x))
 		node.set("direction", sign(node.velocity.x))
 	add_sibling(node)
