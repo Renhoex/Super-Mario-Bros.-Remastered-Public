@@ -1,3 +1,4 @@
+class_name DropShadow
 extends Node2D
 
 var shadow_colour := Color.BLACK

@@ -1,9 +1,10 @@
-[gd_scene load_steps=22 format=4 uid="uid://d1bdp52vqxi6l"]
+[gd_scene load_steps=23 format=4 uid="uid://d1bdp52vqxi6l"]
 
 [ext_resource type="Script" uid="uid://bcqr1v25ygedb" path="res://Scripts/Classes/LevelClass.gd" id="1_k15xu"]
 [ext_resource type="JSON" path="res://Assets/Audio/BGM/Castle.json" id="2_u1wbm"]
 [ext_resource type="PackedScene" uid="uid://ct5rrpa7uehkk" path="res://Scenes/Parts/Tiles.tscn" id="4_vxi4p"]
 [ext_resource type="PackedScene" uid="uid://cuh62hlq8errh" path="res://Scenes/Prefabs/Entities/Player.tscn" id="5_3uucm"]
+[ext_resource type="PackedScene" uid="uid://cqkqtm30tgoq5" path="res://Scenes/Prefabs/LevelObjects/MazeLoopHandler.tscn" id="7_hc76q"]
 [ext_resource type="PackedScene" uid="uid://iq86u4w60yee" path="res://Scenes/Prefabs/Entities/Objects/Firebar.tscn" id="7_ice7i"]
 [ext_resource type="JSON" path="res://Assets/Sprites/Enemies/Spiny.json" id="8_0fnbe"]
 [ext_resource type="PackedScene" uid="uid://cxdj1ea1rt1r4" path="res://Scenes/Prefabs/Entities/Enemies/Podoboo.tscn" id="8_3uucm"]
@@ -110,12 +111,24 @@ position = Vector2(400, -48)
 
 [node name="DropShadow" parent="." instance=ExtResource("13_ice7i")]
 
+[node name="MazeTileHandler" parent="." node_paths=PackedStringArray("tile_lookup") instance=ExtResource("7_hc76q")]
+position = Vector2(0, -200)
+tile_lookup = NodePath("../Tiles")
+end_tile = 64
+
+[node name="MazeTileHandler2" parent="." node_paths=PackedStringArray("tile_lookup") instance=ExtResource("7_hc76q")]
+position = Vector2(1024, -160)
+tile_lookup = NodePath("../Tiles")
+start_tile = 64
+end_tile = 64
+
 [node name="PickAPathTeleport" parent="." instance=ExtResource("14_f6lln")]
 position = Vector2(696, -136)
 
-[node name="PickAPathTeleport2" parent="PickAPathTeleport" instance=ExtResource("14_f6lln")]
+[node name="PickAPathTeleport2" parent="PickAPathTeleport" node_paths=PackedStringArray("warp_handler") instance=ExtResource("14_f6lln")]
 position = Vector2(96, 112)
 reset_pos = Vector2(-40, -48)
+warp_handler = NodePath("../../MazeTileHandler")
 
 [node name="PickAPathPoint" parent="PickAPathTeleport" instance=ExtResource("15_r3v25")]
 position = Vector2(-32, 0)
@@ -124,13 +137,15 @@ position = Vector2(-32, 0)
 position = Vector2(1992, -8)
 reset_pos = Vector2(984, -48)
 
-[node name="PickAPathTeleport3" parent="PickAPathTeleport2" instance=ExtResource("14_f6lln")]
+[node name="PickAPathTeleport3" parent="PickAPathTeleport2" node_paths=PackedStringArray("warp_handler") instance=ExtResource("14_f6lln")]
 position = Vector2(-264, -64)
 reset_pos = Vector2(984, -48)
+warp_handler = NodePath("../../MazeTileHandler2")
 
-[node name="PickAPathTeleport4" parent="PickAPathTeleport2" instance=ExtResource("14_f6lln")]
+[node name="PickAPathTeleport4" parent="PickAPathTeleport2" node_paths=PackedStringArray("warp_handler") instance=ExtResource("14_f6lln")]
 position = Vector2(-264, -128)
 reset_pos = Vector2(984, -48)
+warp_handler = NodePath("../../MazeTileHandler2")
 
 [node name="PickAPathPoint" parent="PickAPathTeleport2" instance=ExtResource("15_r3v25")]
 position = Vector2(-376, 0)
@@ -173,15 +188,15 @@ position = Vector2(2688, 0)
 particles = 3
 
 [connection signal="area_entered" from="Tiles/DeathPit" to="Tiles/DeathPit" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40052" to="Tiles/@Area2D@40052" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40053" to="Tiles/@Area2D@40053" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40054" to="Tiles/@Area2D@40054" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40055" to="Tiles/@Area2D@40055" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40056" to="Tiles/@Area2D@40056" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40057" to="Tiles/@Area2D@40057" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40058" to="Tiles/@Area2D@40058" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40059" to="Tiles/@Area2D@40059" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40060" to="Tiles/@Area2D@40060" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@22462" to="Tiles/@Area2D@22462" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@22463" to="Tiles/@Area2D@22463" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@22464" to="Tiles/@Area2D@22464" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@22465" to="Tiles/@Area2D@22465" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@22466" to="Tiles/@Area2D@22466" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@22467" to="Tiles/@Area2D@22467" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@22468" to="Tiles/@Area2D@22468" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@22469" to="Tiles/@Area2D@22469" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@22470" to="Tiles/@Area2D@22470" method="area_entered"]
 [connection signal="axe_touched" from="CastleBridge" to="Bowser" method="bridge_fall"]
 [connection signal="victory_begin" from="CastleBridge" to="CastleToad" method="begin"]
 [connection signal="victory_begin" from="CastleBridge" to="ChallengeNodes/CastleChallengeEnd" method="begin"]

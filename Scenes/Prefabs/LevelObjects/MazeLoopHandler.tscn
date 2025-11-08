@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqkqtm30tgoq5"]
+
+[ext_resource type="Script" uid="uid://c88ebe0sptad2" path="res://Scripts/Parts/MazeLoopHandler.gd" id="1_ro0pu"]
+[ext_resource type="Texture2D" uid="uid://bagrao4ahra76" path="res://Assets/Sprites/Items/Key.png" id="2_imngk"]
+
+[node name="MazeTileHandler" type="Node2D"]
+script = ExtResource("1_ro0pu")
+
+[node name="Start" type="Sprite2D" parent="."]
+modulate = Color(0, 1, 0, 0.6)
+texture = ExtResource("2_imngk")
+centered = false
+hframes = 3
+
+[node name="End" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 0.6)
+position = Vector2(16, 0)
+texture = ExtResource("2_imngk")
+centered = false
+hframes = 3
