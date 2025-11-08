@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://m5tqelw47oet"]
+[gd_scene load_steps=28 format=4 uid="uid://m5tqelw47oet"]
 
 [ext_resource type="Script" uid="uid://bcqr1v25ygedb" path="res://Scripts/Classes/LevelClass.gd" id="1_0kk8t"]
 [ext_resource type="JSON" path="res://Assets/Audio/BGM/Castle.json" id="2_d34x1"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://kj5pw3xhq8f7" path="res://Scenes/Prefabs/Entities/Enemies/RedPiranhaPlant.tscn" id="10_cmkys"]
 [ext_resource type="PackedScene" uid="uid://b6drci0vml1as" path="res://Scenes/Prefabs/Entities/Enemies/Blooper.tscn" id="11_8klxw"]
 [ext_resource type="PackedScene" uid="uid://r6dlmokkdyar" path="res://Scenes/Prefabs/Entities/Enemies/GreenKoopaTroopa.tscn" id="12_lgfb4"]
+[ext_resource type="PackedScene" uid="uid://cqkqtm30tgoq5" path="res://Scenes/Prefabs/LevelObjects/MazeLoopHandler.tscn" id="13_51i6h"]
 [ext_resource type="PackedScene" uid="uid://cmvugag0kupgu" path="res://Scenes/Prefabs/Entities/Enemies/RedKoopaTroopa.tscn" id="13_ct5s8"]
 [ext_resource type="PackedScene" uid="uid://iq86u4w60yee" path="res://Scenes/Prefabs/Entities/Objects/Firebar.tscn" id="13_ncmv2"]
 [ext_resource type="PackedScene" uid="uid://b5fyj3qbppnyg" path="res://Scenes/Prefabs/LevelObjects/PickAPathTeleport.tscn" id="14_ct5s8"]
@@ -90,10 +91,19 @@ position = Vector2(600, -56)
 length = 12
 direction = 1
 
-[node name="PickAPathTeleport" parent="." instance=ExtResource("14_ct5s8")]
+[node name="MazeTileHandler" parent="." node_paths=PackedStringArray("tile_lookup", "overlay_lookup", "node_parents") instance=ExtResource("13_51i6h")]
+position = Vector2(-240, -48)
+tile_lookup = NodePath("../Tiles")
+overlay_lookup = NodePath("../Tiles2")
+start_tile = -15
+end_tile = 64
+node_parents = [NodePath("../Enemies"), NodePath("../Blocks"), NodePath("../SettingObjectNode")]
+
+[node name="PickAPathTeleport" parent="." node_paths=PackedStringArray("warp_handler") instance=ExtResource("14_ct5s8")]
 position = Vector2(524, -112)
 scale = Vector2(0.433611, 2.01978)
 reset_pos = Vector2(-248, 0)
+warp_handler = NodePath("../MazeTileHandler")
 
 [node name="PickAPathPoint" parent="PickAPathTeleport" instance=ExtResource("15_8klxw")]
 position = Vector2(-2.3064, 44.0641)
@@ -165,13 +175,13 @@ position = Vector2(8, -56)
 [connection signal="player_block_hit" from="Tiles/QuestionBlock" to="Tiles/QuestionBlock/BlockAnimations" method="bounce_block" unbinds=1]
 [connection signal="shell_block_hit" from="Tiles/QuestionBlock" to="Tiles/QuestionBlock" method="dispense_item" unbinds=1]
 [connection signal="shell_block_hit" from="Tiles/QuestionBlock" to="Tiles/QuestionBlock/BlockAnimations" method="bounce_block" unbinds=1]
-[connection signal="block_destroyed" from="Tiles/@AnimatableBody2D@62887" to="Tiles/@AnimatableBody2D@62887/LevelPersistance" method="set_as_active_2"]
-[connection signal="block_emptied" from="Tiles/@AnimatableBody2D@62887" to="Tiles/@AnimatableBody2D@62887/LevelPersistance" method="set_as_active"]
-[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@62887" to="Tiles/@AnimatableBody2D@62887" method="player_mushroom_check"]
-[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@62887" to="Tiles/@AnimatableBody2D@62887" method="dispense_item" unbinds=1]
-[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@62887" to="Tiles/@AnimatableBody2D@62887/BlockAnimations" method="bounce_block" unbinds=1]
-[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@62887" to="Tiles/@AnimatableBody2D@62887" method="dispense_item" unbinds=1]
-[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@62887" to="Tiles/@AnimatableBody2D@62887/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="block_destroyed" from="Tiles/@AnimatableBody2D@156645" to="Tiles/@AnimatableBody2D@156645/LevelPersistance" method="set_as_active_2"]
+[connection signal="block_emptied" from="Tiles/@AnimatableBody2D@156645" to="Tiles/@AnimatableBody2D@156645/LevelPersistance" method="set_as_active"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@156645" to="Tiles/@AnimatableBody2D@156645" method="player_mushroom_check"]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@156645" to="Tiles/@AnimatableBody2D@156645" method="dispense_item" unbinds=1]
+[connection signal="player_block_hit" from="Tiles/@AnimatableBody2D@156645" to="Tiles/@AnimatableBody2D@156645/BlockAnimations" method="bounce_block" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@156645" to="Tiles/@AnimatableBody2D@156645" method="dispense_item" unbinds=1]
+[connection signal="shell_block_hit" from="Tiles/@AnimatableBody2D@156645" to="Tiles/@AnimatableBody2D@156645/BlockAnimations" method="bounce_block" unbinds=1]
 [connection signal="block_destroyed" from="Tiles/InvisibleQuestionBlock" to="Tiles/InvisibleQuestionBlock/LevelPersistance" method="set_as_active_2"]
 [connection signal="block_emptied" from="Tiles/InvisibleQuestionBlock" to="Tiles/InvisibleQuestionBlock/LevelPersistance" method="set_as_active"]
 [connection signal="player_block_hit" from="Tiles/InvisibleQuestionBlock" to="Tiles/InvisibleQuestionBlock" method="player_mushroom_check"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://pa2g0jame5sv"]
+[gd_scene load_steps=23 format=4 uid="uid://pa2g0jame5sv"]
 
 [ext_resource type="Script" uid="uid://bcqr1v25ygedb" path="res://Scripts/Classes/LevelClass.gd" id="1_0cclm"]
 [ext_resource type="JSON" path="res://Assets/Audio/BGM/Castle.json" id="2_7ps2v"]
@@ -12,6 +12,7 @@
 [ext_resource type="JSON" path="res://Assets/Sprites/Enemies/HammerBro.json" id="11_jqipl"]
 [ext_resource type="PackedScene" uid="uid://dtpyjucfl16sw" path="res://Scenes/Prefabs/LevelObjects/CastleBridge.tscn" id="12_0qrp5"]
 [ext_resource type="PackedScene" uid="uid://duptcik2j0b04" path="res://Scenes/Prefabs/Entities/Enemies/Bowser.tscn" id="13_aa5ou"]
+[ext_resource type="PackedScene" uid="uid://cqkqtm30tgoq5" path="res://Scenes/Prefabs/LevelObjects/MazeLoopHandler.tscn" id="13_gpae8"]
 [ext_resource type="PackedScene" uid="uid://b5fyj3qbppnyg" path="res://Scenes/Prefabs/LevelObjects/PickAPathTeleport.tscn" id="14_8suck"]
 [ext_resource type="PackedScene" uid="uid://cmcpug8hc74jf" path="res://Scenes/Prefabs/LevelObjects/PickAPathPoint.tscn" id="15_n0duc"]
 [ext_resource type="PackedScene" uid="uid://blbarreyjem4l" path="res://Scenes/Prefabs/Entities/Enemies/BowserFlame.tscn" id="16_axpd0"]
@@ -68,9 +69,17 @@ resource_json = ExtResource("11_jqipl")
 
 [node name="DropShadow" parent="." instance=ExtResource("6_oxjp2")]
 
-[node name="PickAPathTeleport" parent="." instance=ExtResource("14_8suck")]
+[node name="MazeTileHandler" parent="." node_paths=PackedStringArray("tile_lookup") instance=ExtResource("13_gpae8")]
+position = Vector2(256, -64)
+tile_lookup = NodePath("../Tiles")
+start_tile = 16
+end_tile = 64
+
+[node name="PickAPathTeleport" parent="." node_paths=PackedStringArray("warp_handler") instance=ExtResource("14_8suck")]
 position = Vector2(1144, -136)
 reset_pos = Vector2(184, -48)
+warp_handler = NodePath("../MazeTileHandler")
+start_position_shift = Vector2(-96, 0)
 
 [node name="PickAPathPoint" parent="PickAPathTeleport" instance=ExtResource("15_n0duc")]
 position = Vector2(-616, 112)
@@ -81,13 +90,23 @@ position = Vector2(-360, 64)
 [node name="PickAPathPoint3" parent="PickAPathTeleport" instance=ExtResource("15_n0duc")]
 position = Vector2(-120, 0)
 
-[node name="PickAPathTeleport2" parent="PickAPathTeleport" instance=ExtResource("14_8suck")]
+[node name="PickAPathTeleport2" parent="PickAPathTeleport" node_paths=PackedStringArray("warp_handler") instance=ExtResource("14_8suck")]
 position = Vector2(3, 112)
 reset_pos = Vector2(184, -48)
+warp_handler = NodePath("../../MazeTileHandler")
+start_position_shift = Vector2(-96, 0)
 
-[node name="PickAPathTeleport2" parent="." instance=ExtResource("14_8suck")]
+[node name="MazeTileHandler2" parent="." node_paths=PackedStringArray("tile_lookup") instance=ExtResource("13_gpae8")]
+position = Vector2(1280, -128)
+tile_lookup = NodePath("../Tiles")
+start_tile = 80
+end_tile = 64
+
+[node name="PickAPathTeleport2" parent="." node_paths=PackedStringArray("warp_handler") instance=ExtResource("14_8suck")]
 position = Vector2(2160, -136)
 reset_pos = Vector2(1240, -48)
+warp_handler = NodePath("../MazeTileHandler2")
+start_position_shift = Vector2(-120, 0)
 
 [node name="PickAPathPoint" parent="PickAPathTeleport2" instance=ExtResource("15_n0duc")]
 position = Vector2(-136, 0)
@@ -98,9 +117,11 @@ position = Vector2(-384, 64)
 [node name="PickAPathPoint3" parent="PickAPathTeleport2" instance=ExtResource("15_n0duc")]
 position = Vector2(-616, 0)
 
-[node name="PickAPathTeleport2" parent="PickAPathTeleport2" instance=ExtResource("14_8suck")]
+[node name="PickAPathTeleport2" parent="PickAPathTeleport2" node_paths=PackedStringArray("warp_handler") instance=ExtResource("14_8suck")]
 position = Vector2(0, 64)
 reset_pos = Vector2(1240, -48)
+warp_handler = NodePath("../../MazeTileHandler2")
+start_position_shift = Vector2(-120, 0)
 
 [node name="BowserFlame" parent="." instance=ExtResource("16_axpd0")]
 position = Vector2(2640, -56)
@@ -140,35 +161,35 @@ position = Vector2(3184, 0)
 particles = 3
 
 [connection signal="area_entered" from="Tiles/DeathPit" to="Tiles/DeathPit" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40822" to="Tiles/@Area2D@40822" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40823" to="Tiles/@Area2D@40823" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40824" to="Tiles/@Area2D@40824" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40825" to="Tiles/@Area2D@40825" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40826" to="Tiles/@Area2D@40826" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40827" to="Tiles/@Area2D@40827" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40828" to="Tiles/@Area2D@40828" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40829" to="Tiles/@Area2D@40829" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40830" to="Tiles/@Area2D@40830" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40831" to="Tiles/@Area2D@40831" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40832" to="Tiles/@Area2D@40832" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40833" to="Tiles/@Area2D@40833" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40834" to="Tiles/@Area2D@40834" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40835" to="Tiles/@Area2D@40835" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40836" to="Tiles/@Area2D@40836" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40837" to="Tiles/@Area2D@40837" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40838" to="Tiles/@Area2D@40838" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40839" to="Tiles/@Area2D@40839" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40840" to="Tiles/@Area2D@40840" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40841" to="Tiles/@Area2D@40841" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40842" to="Tiles/@Area2D@40842" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40843" to="Tiles/@Area2D@40843" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40844" to="Tiles/@Area2D@40844" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40845" to="Tiles/@Area2D@40845" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40846" to="Tiles/@Area2D@40846" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40847" to="Tiles/@Area2D@40847" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40848" to="Tiles/@Area2D@40848" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40849" to="Tiles/@Area2D@40849" method="area_entered"]
-[connection signal="area_entered" from="Tiles/@Area2D@40850" to="Tiles/@Area2D@40850" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@39413" to="Tiles/@Area2D@39413" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@39414" to="Tiles/@Area2D@39414" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@39415" to="Tiles/@Area2D@39415" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@39416" to="Tiles/@Area2D@39416" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@39417" to="Tiles/@Area2D@39417" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@39418" to="Tiles/@Area2D@39418" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@39419" to="Tiles/@Area2D@39419" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@39420" to="Tiles/@Area2D@39420" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@39421" to="Tiles/@Area2D@39421" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@39422" to="Tiles/@Area2D@39422" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@39423" to="Tiles/@Area2D@39423" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@39424" to="Tiles/@Area2D@39424" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@39425" to="Tiles/@Area2D@39425" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@39426" to="Tiles/@Area2D@39426" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@39427" to="Tiles/@Area2D@39427" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@39428" to="Tiles/@Area2D@39428" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@39429" to="Tiles/@Area2D@39429" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@39430" to="Tiles/@Area2D@39430" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@39431" to="Tiles/@Area2D@39431" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@39432" to="Tiles/@Area2D@39432" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@39433" to="Tiles/@Area2D@39433" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@39434" to="Tiles/@Area2D@39434" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@39435" to="Tiles/@Area2D@39435" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@39436" to="Tiles/@Area2D@39436" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@39437" to="Tiles/@Area2D@39437" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@39438" to="Tiles/@Area2D@39438" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@39439" to="Tiles/@Area2D@39439" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@39440" to="Tiles/@Area2D@39440" method="area_entered"]
+[connection signal="area_entered" from="Tiles/@Area2D@39441" to="Tiles/@Area2D@39441" method="area_entered"]
 [connection signal="axe_touched" from="CastleBridge" to="Bowser" method="bridge_fall"]
 [connection signal="victory_begin" from="CastleBridge" to="CastleToad" method="begin"]
 [connection signal="victory_begin" from="CastleBridge" to="ChallengeNodes/CastleChallengeEnd" method="begin"]

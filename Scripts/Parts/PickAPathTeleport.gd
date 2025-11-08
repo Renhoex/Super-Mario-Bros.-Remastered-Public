@@ -1,9 +1,16 @@
 extends Node2D
 
 @export var reset_pos := Vector2.ZERO
+@export_category("Maze loop settings")
 @export var warp_handler:WarpLoopHandler
+@export var start_position_shift:Vector2 = Vector2.ZERO
 
 signal player_teleported
+func _ready() -> void:
+	# shift the hitbox back if we're using the classic warp system (mitigates wide screen issues)
+	if warp_handler && Global.current_game_mode != Global.GameMode.CHALLENGE && Global.current_campaign != "SMBANN":
+		$Hitbox.position += start_position_shift
+
 
 func on_player_entered(_player: Player) -> void:
 	if get_child_count() <= 1:
@@ -23,7 +30,7 @@ func teleport_player(player: Player) -> void:
 		if i is PickAPathPoint:
 			i.crossed = false
 	# Challenges are handled in their own node
-	if warp_handler && Global.current_game_mode != Global.GameMode.CHALLENGE:
+	if warp_handler && Global.current_game_mode != Global.GameMode.CHALLENGE && Global.current_campaign != "SMBANN":
 		warp_handler.maze_loop()
 	else:
 		player.teleport_player(reset_pos)

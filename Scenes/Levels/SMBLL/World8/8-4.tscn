@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://ojlyl3tabp2p"]
+[gd_scene load_steps=21 format=4 uid="uid://ojlyl3tabp2p"]
 
 [ext_resource type="Script" uid="uid://bcqr1v25ygedb" path="res://Scripts/Classes/LevelClass.gd" id="1_ra4xs"]
 [ext_resource type="JSON" path="res://Assets/Audio/BGM/Castle.json" id="2_munar"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cxdj1ea1rt1r4" path="res://Scenes/Prefabs/Entities/Enemies/Podoboo.tscn" id="8_7k3wp"]
 [ext_resource type="PackedScene" uid="uid://cmvugag0kupgu" path="res://Scenes/Prefabs/Entities/Enemies/RedKoopaTroopa.tscn" id="9_aeg26"]
 [ext_resource type="PackedScene" uid="uid://kj5pw3xhq8f7" path="res://Scenes/Prefabs/Entities/Enemies/RedPiranhaPlant.tscn" id="10_mpaeo"]
+[ext_resource type="PackedScene" uid="uid://cqkqtm30tgoq5" path="res://Scenes/Prefabs/LevelObjects/MazeLoopHandler.tscn" id="11_d6bjg"]
 [ext_resource type="PackedScene" uid="uid://58uk17ixtt4r" path="res://Scenes/Prefabs/Blocks/InvisibleBlocks/InvisibleQuestionBlock.tscn" id="11_vbftp"]
 [ext_resource type="PackedScene" uid="uid://n7nskl10ouem" path="res://Scenes/Prefabs/Entities/Items/PoisonMushroom.tscn" id="12_qbj06"]
 [ext_resource type="PackedScene" uid="uid://b5fyj3qbppnyg" path="res://Scenes/Prefabs/LevelObjects/PickAPathTeleport.tscn" id="13_4akn8"]
@@ -75,9 +76,20 @@ position = Vector2(832, -32)
 position = Vector2(200, -72)
 item = ExtResource("12_qbj06")
 
-[node name="PickAPathTeleport" parent="." instance=ExtResource("13_4akn8")]
+[node name="MazeTileHandler" parent="." node_paths=PackedStringArray("tile_lookup", "overlay_lookup", "node_parents", "force_include") instance=ExtResource("11_d6bjg")]
+position = Vector2(0, -200)
+tile_lookup = NodePath("../Tiles")
+overlay_lookup = NodePath("../Tiles2")
+end_tile = 64
+node_parents = [NodePath("../Enemies"), NodePath("../SettingObjectNode")]
+force_include = [NodePath("../SettingObjectNode/Tiles")]
+
+[node name="PickAPathTeleport" parent="." node_paths=PackedStringArray("warp_handler") instance=ExtResource("13_4akn8")]
 position = Vector2(984, -24)
+scale = Vector2(1, 10)
 reset_pos = Vector2(-232, 0)
+warp_handler = NodePath("../MazeTileHandler")
+start_position_shift = Vector2(-384, 0)
 
 [node name="CameraRightLimit" type="Node2D" parent="."]
 position = Vector2(1024, -88)
