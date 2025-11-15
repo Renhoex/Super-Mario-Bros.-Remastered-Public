@@ -120,16 +120,10 @@ script = ExtResource("16_qe3tl")
 extra_track = ExtResource("16_lbr75")
 
 [node name="EntityGenerator" parent="." instance=ExtResource("17_lbr75")]
-position = Vector2(-16, -200)
-
-[node name="EntityGenerator2" parent="." instance=ExtResource("17_lbr75")]
-position = Vector2(2064, -200)
-
-[node name="EntityGeneratorStopper" parent="." instance=ExtResource("18_b2we5")]
-position = Vector2(1736, -224)
+position = Vector2(160, -184)
 
 [node name="EntityGeneratorStopper2" parent="." instance=ExtResource("18_b2we5")]
-position = Vector2(2840, -200)
+position = Vector2(2912, -200)
 
 [node name="ChallengeNodes" type="Node" parent="." node_paths=PackedStringArray("nodes_to_delete")]
 script = ExtResource("19_vfmt0")
@@ -165,23 +159,23 @@ item = ExtResource("22_cstyg")
 position = Vector2(360, -120)
 
 [connection signal="collected" from="Tiles/Coin" to="Tiles/Coin/LevelPersistance" method="set_as_active"]
-[connection signal="collected" from="Tiles/@Node2D@46939" to="Tiles/@Node2D@46939/LevelPersistance" method="set_as_active"]
-[connection signal="collected" from="Tiles/@Node2D@46940" to="Tiles/@Node2D@46940/LevelPersistance" method="set_as_active"]
-[connection signal="collected" from="Tiles/@Node2D@46941" to="Tiles/@Node2D@46941/LevelPersistance" method="set_as_active"]
-[connection signal="collected" from="Tiles/@Node2D@46942" to="Tiles/@Node2D@46942/LevelPersistance" method="set_as_active"]
-[connection signal="collected" from="Tiles/@Node2D@46943" to="Tiles/@Node2D@46943/LevelPersistance" method="set_as_active"]
-[connection signal="collected" from="Tiles/@Node2D@46944" to="Tiles/@Node2D@46944/LevelPersistance" method="set_as_active"]
-[connection signal="collected" from="Tiles/@Node2D@46945" to="Tiles/@Node2D@46945/LevelPersistance" method="set_as_active"]
-[connection signal="collected" from="Tiles/@Node2D@46946" to="Tiles/@Node2D@46946/LevelPersistance" method="set_as_active"]
-[connection signal="collected" from="Tiles/@Node2D@46947" to="Tiles/@Node2D@46947/LevelPersistance" method="set_as_active"]
-[connection signal="collected" from="Tiles/@Node2D@46948" to="Tiles/@Node2D@46948/LevelPersistance" method="set_as_active"]
-[connection signal="collected" from="Tiles/@Node2D@46949" to="Tiles/@Node2D@46949/LevelPersistance" method="set_as_active"]
-[connection signal="collected" from="Tiles/@Node2D@46950" to="Tiles/@Node2D@46950/LevelPersistance" method="set_as_active"]
-[connection signal="collected" from="Tiles/@Node2D@46951" to="Tiles/@Node2D@46951/LevelPersistance" method="set_as_active"]
-[connection signal="collected" from="Tiles/@Node2D@46952" to="Tiles/@Node2D@46952/LevelPersistance" method="set_as_active"]
-[connection signal="collected" from="Tiles/@Node2D@46953" to="Tiles/@Node2D@46953/LevelPersistance" method="set_as_active"]
-[connection signal="collected" from="Tiles/@Node2D@46954" to="Tiles/@Node2D@46954/LevelPersistance" method="set_as_active"]
-[connection signal="collected" from="Tiles/@Node2D@46955" to="Tiles/@Node2D@46955/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@25905" to="Tiles/@Node2D@25905/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@25906" to="Tiles/@Node2D@25906/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@25907" to="Tiles/@Node2D@25907/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@25908" to="Tiles/@Node2D@25908/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@25909" to="Tiles/@Node2D@25909/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@25910" to="Tiles/@Node2D@25910/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@25911" to="Tiles/@Node2D@25911/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@25912" to="Tiles/@Node2D@25912/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@25913" to="Tiles/@Node2D@25913/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@25914" to="Tiles/@Node2D@25914/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@25915" to="Tiles/@Node2D@25915/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@25916" to="Tiles/@Node2D@25916/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@25917" to="Tiles/@Node2D@25917/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@25918" to="Tiles/@Node2D@25918/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@25919" to="Tiles/@Node2D@25919/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@25920" to="Tiles/@Node2D@25920/LevelPersistance" method="set_as_active"]
+[connection signal="collected" from="Tiles/@Node2D@25921" to="Tiles/@Node2D@25921/LevelPersistance" method="set_as_active"]
 [connection signal="block_destroyed" from="Tiles/QuestionBlock" to="Tiles/QuestionBlock/LevelPersistance" method="set_as_active_2"]
 [connection signal="block_emptied" from="Tiles/QuestionBlock" to="Tiles/QuestionBlock/LevelPersistance" method="set_as_active"]
 [connection signal="player_block_hit" from="Tiles/QuestionBlock" to="Tiles/QuestionBlock" method="player_mushroom_check"]
@@ -191,6 +185,7 @@ position = Vector2(360, -120)
 [connection signal="shell_block_hit" from="Tiles/QuestionBlock" to="Tiles/QuestionBlock/BlockAnimations" method="bounce_block" unbinds=1]
 [connection signal="block_destroyed" from="Tiles/BrickBlock" to="Tiles/BrickBlock/LevelPersistance" method="set_as_active_2"]
 [connection signal="block_emptied" from="Tiles/BrickBlock" to="Tiles/BrickBlock/LevelPersistance" method="set_as_active"]
+[connection signal="item_changed" from="Tiles/BrickBlock" to="Tiles/BrickBlock" method="check_brick_empty"]
 [connection signal="player_block_hit" from="Tiles/BrickBlock" to="Tiles/BrickBlock" method="on_block_hit"]
 [connection signal="player_block_hit" from="Tiles/BrickBlock" to="Tiles/BrickBlock/BlockAnimations" method="bounce_block" unbinds=1]
 [connection signal="shell_block_hit" from="Tiles/BrickBlock" to="Tiles/BrickBlock" method="on_shell_block_hit"]

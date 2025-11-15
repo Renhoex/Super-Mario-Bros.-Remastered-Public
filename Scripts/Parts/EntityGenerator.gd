@@ -7,8 +7,18 @@ var active := false
 @export_enum("Target Player", "Random Height") var y_pos := 0
 @export_enum("Right", "Bottom") var direction := 0
 @export var entity_scene: PackedScene = null
+var player: Player = null
 
 signal activated
+
+func _ready() -> void:
+	player = get_tree().get_first_node_in_group("Players")
+	if player.global_position.x >= global_position.x and not active:
+		active = true
+		spawn_meter = 0
+		spawn_entity()
+		activated.emit()
+	
 
 func _physics_process(delta: float) -> void:
 	if active:

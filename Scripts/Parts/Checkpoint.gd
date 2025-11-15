@@ -40,7 +40,8 @@ func _ready() -> void:
 		return
 	if passed and PipeArea.exiting_pipe_id == -1 and Global.current_game_mode != Global.GameMode.LEVEL_EDITOR and Level.vine_return_level == "" and passed_checkpoints[passed_checkpoints.size() - 1] == id:
 		for i in nodes_to_delete:
-			i.queue_free()
+			if i != null:
+				i.queue_free()
 		for i in get_tree().get_nodes_in_group("Players"):
 			i.global_position = self.global_position
 			i.reset_physics_interpolation()
