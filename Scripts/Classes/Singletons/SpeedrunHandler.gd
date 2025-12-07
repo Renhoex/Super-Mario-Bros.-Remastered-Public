@@ -100,7 +100,7 @@ const SMB1_LEVEL_GOLD_WARPLESS_TIMES := [
 	[24, 24, 19, 18],  # World 5
 	[23, 27, 20, 18],  # World 6
 	[22, 40, 27, 25],  # World 7
-	[42, 26, 26, 52]   # World 8
+	[42, 26, 26, 52],  # World 8
 	[-1, -1, -1, -1],  # World 9
 	[-1, -1, -1, -1],  # World A
 	[-1, -1, -1, -1],  # World B
