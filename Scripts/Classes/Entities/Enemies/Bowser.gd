@@ -13,7 +13,7 @@ var target_player: Player = null
 
 var can_move := true
 var can_fall := true
-
+var signaltoFall := false
 var health := 5
 
 var move_dir := -1
@@ -92,7 +92,10 @@ func bridge_fall(start: bool = false) -> void:
 		can_fall = false
 		velocity.y = 0
 	else:
-		$FallSFX.play()
+		if signaltoFall == true:
+			$FallSFX.play()
+		else:
+			signaltoFall = true
 		ignore_flag_die = true
 		can_fall = true
 		$Collision.queue_free()

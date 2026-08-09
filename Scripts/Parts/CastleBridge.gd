@@ -52,7 +52,7 @@ func destroy_bridge(player: Player) -> void:
 	if bowser_present:
 		var bowser_count = 0
 		for i in get_tree().get_nodes_in_group("Bowser"):
-			if i.ignore_flag_die == false:
+			#if i.ignore_flag_die == true:
 				bowser_count += 1 
 				i.bridge_fall(true)
 		if bowser_count <= 0: 
